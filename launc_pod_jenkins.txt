@@ -1,0 +1,31 @@
+
+if sudo  kubectl get pvc |grep web-pvc1
+ then
+sudo echo "already deploy"
+else
+ sudo kubectl create -f /root/ws1/web-pvc.yml
+fi
+
+
+if sudo ls|grep .php
+ then
+if sudo kubectl get deployment |grep myweb-deploy
+ then 
+sudo echo "already running"
+ else
+sudo kubectl create -f /root/ws1/deploy1.yml
+sudo kubectl expose deployment myweb-deploy   --port=80 --type=NodePort
+fi
+ else 
+if sudo kubectl get deployment |grep html-web
+ then
+sudo echo "already running"
+ else
+sudo kubectl create -f /root/ws1/html.yml
+sudo kubectl expose deployment html-web --port=80 --type=NodePort
+fi
+fi
+ls
+sudo sleep 10
+sudo kubectl get pods
+sudo kubectl get services

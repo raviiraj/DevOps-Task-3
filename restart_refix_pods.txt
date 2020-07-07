@@ -1,0 +1,8 @@
+xport status=$(curl -s -i -w "%{http_code}" -o /dev/null/http://192.168.99.101:31868)
+if echo $status==200
+then
+echo "all good"
+exit 0
+else
+sudo python3 /root/ws1/email.py
+fi 
